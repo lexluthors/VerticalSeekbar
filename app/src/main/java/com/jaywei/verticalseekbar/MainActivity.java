@@ -1,5 +1,6 @@
 package com.jaywei.verticalseekbar;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -61,8 +62,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		switch (v.getId())
 		{
 			case R.id.tv_current_brightness:
-				vpbInnerTemper.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.TRANSPARENT);
-				vpbBrightness.setColor(Color.BLUE, Color.WHITE, Color.YELLOW, Color.BLUE, Color.TRANSPARENT);
+//				vpbInnerTemper.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.TRANSPARENT);
+//				vpbBrightness.setColor(Color.BLUE, Color.WHITE, Color.YELLOW, Color.BLUE, Color.TRANSPARENT);
+				Intent intent =new Intent(MainActivity.this,Main2Activity.class);
+				startActivity(intent);
 				break;
 			case R.id.tv_current_temper:
 				vpbInnerTemper.setColor(Color.RED, Color.BLUE, Color.TRANSPARENT);

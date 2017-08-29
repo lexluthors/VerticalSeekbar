@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.util.AttributeSet;
@@ -20,9 +19,9 @@ import android.view.View;
  * Created by Tony on 2017/8/25.
  */
 
-public class VerticalSeekBar extends View
+public class VerticalSeekBar2 extends View
 {
-	private static final String TAG = VerticalSeekBar.class.getSimpleName();
+	private static final String TAG = VerticalSeekBar2.class.getSimpleName();
 	private int startColor = Color.GRAY;
 	private int middleColor = Color.GRAY;
 	private int endColor = Color.GRAY;
@@ -42,27 +41,24 @@ public class VerticalSeekBar extends View
 
 	private static final int DEFAULT_CIRCLE_RADIUS = 0;
 	private static final int DEFAULT_CIRCLE_COLOR = Color.GRAY;
-	private static final int vertical = 0;
-	private static final int horizontal = 1;
 
 	private int circle_radius = DEFAULT_CIRCLE_RADIUS;
 
-	private int seekbar_orientation = vertical;
 	private int vertical_color = Color.GRAY;
 	private int image_background = 0;
 	private boolean dragable = true;
 
-	public VerticalSeekBar(Context context)
+	public VerticalSeekBar2(Context context)
 	{
 		this(context, null);
 	}
 
-	public VerticalSeekBar(Context context, AttributeSet attrs)
+	public VerticalSeekBar2(Context context, AttributeSet attrs)
 	{
 		this(context, attrs, 0);
 	}
 
-	public VerticalSeekBar(Context context, AttributeSet attrs, int defStyle)
+	public VerticalSeekBar2(Context context, AttributeSet attrs, int defStyle)
 	{
 		super(context, attrs, defStyle);
 		TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.VerticalSeekBar, defStyle, 0);
@@ -70,7 +66,6 @@ public class VerticalSeekBar extends View
 		circle_radius = a.getDimensionPixelSize(R.styleable.VerticalSeekBar_circle_radius, DEFAULT_CIRCLE_RADIUS);
 		thumbColor = a.getColor(R.styleable.VerticalSeekBar_circle_color, DEFAULT_CIRCLE_COLOR);
 		dragable = a.getBoolean(R.styleable.VerticalSeekBar_dragable, true);
-		seekbar_orientation = a.getInt(R.styleable.VerticalSeekBar_seekbar_orientation, vertical);
 		vertical_color = a.getColor(R.styleable.VerticalSeekBar_vertical_color, Color.GRAY);
 		image_background = a.getResourceId(R.styleable.VerticalSeekBar_image_background, 0);
 		a.recycle();
@@ -144,114 +139,28 @@ public class VerticalSeekBar extends View
 	@Override
 	protected void onDraw(Canvas canvas)
 	{
-		Log.e("onDraw>>>", seekbar_orientation + "onDraw");
+		Log.e("onDraw>>>",  "onDraw");
 		super.onDraw(canvas);
 		int h = getMeasuredHeight();
 		int w = getMeasuredWidth();
 
-		if (image_background == 0)
-		{
-			if (seekbar_orientation == vertical)
+			// 竖
+			if (circle_radius == 0)
 			{
-				// 竖
-				if (circle_radius == 0)
-				{
-					mRadius = (float) w / 2;
-				}
-				else
-				{
-					mRadius = circle_radius;
-				}
-				sLeft = w * 0.25f; // 背景左边缘坐标
-				sRight = w * 0.75f;// 背景右边缘坐标
-				sTop = 0;
-				sBottom = h;
-				sWidth = sRight - sLeft; // 背景宽度
-				sHeight = sBottom - sTop; // 背景高度
-				x = (float) w / 2;// 圆心的x坐标
-				y = (float) (1 - 0.01 * progress) * sHeight;// 圆心y坐标
+				mRadius = (float) w / 2;
 			}
 			else
 			{
-				if (circle_radius == 0)
-				{
-					mRadius = (float) h / 2;
-				}
-				else
-				{
-					mRadius = circle_radius;
-				}
-
-				sLeft = 0; // 背景左边缘坐标
-				sRight = w;// 背景右边缘坐标
-				sTop = h * 0.25f;
-				sBottom = h * 0.75f;
-				sWidth = sRight - sLeft; // 背景宽度
-				sHeight = sBottom - sTop; // 背景高度
-				x = (float) (0.01 * progress) * sWidth;// 圆心的x坐标
-				y = (float) h / 2;// 圆心y坐标
+				mRadius = circle_radius;
 			}
-		}
-		else
-		{
-
-
-//			BitmapFactory.Options options = new BitmapFactory.Options();
-//			options.outWidth = getMeasuredWidth();
-//			Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image_background, options);
-//			// bitmap.createScaledBitmap(bitmap, getMeasuredWidth(), 2*getMeasuredWidth(), false);
-//			// int outW = bitmap.getWidth();
-//			int outH = (int) (bitmap.getHeight() * getMeasuredWidth() / bitmap.getWidth());
-//			// canvas.drawBitmap(bitmap, 0, y-outH/2, thumbPaint);
-//
-//			Rect rect = new Rect(0, (int) (y - outH / 2), getMeasuredWidth(), (int) (y + outH / 2));// 缩小2倍
-//			canvas.drawBitmap(bitmap, null, rect, null);
-
-
-
-			//图片
-			if (seekbar_orientation == vertical)
-			{
-				// 竖
-				if (circle_radius == 0)
-				{
-					mRadius = (float) w / 2;
-				}
-				else
-				{
-					mRadius = circle_radius;
-				}
-				sLeft = w * 0.25f; // 背景左边缘坐标
-				sRight = w * 0.75f;// 背景右边缘坐标
-				sTop = 0 ;
-				sBottom = h ;
-				sWidth = sRight - sLeft; // 背景宽度
-				sHeight = sBottom - sTop; // 背景高度
-				x = (float) w / 2;// 圆心的x坐标
-				y = (float) (1 - 0.01 * progress) * sHeight;// 圆心y坐标
-			}
-			else
-			{
-				if (circle_radius == 0)
-				{
-					mRadius = (float) h / 2;
-				}
-				else
-				{
-					mRadius = circle_radius;
-				}
-
-				sLeft = 0; // 背景左边缘坐标
-				sRight = w;// 背景右边缘坐标
-				sTop = h * 0.25f;
-				sBottom = h * 0.75f;
-				sWidth = sRight - sLeft; // 背景宽度
-				sHeight = sBottom - sTop; // 背景高度
-				x = (float) (0.01 * progress) * sWidth;// 圆心的x坐标
-				y = (float) h / 2;// 圆心y坐标
-			}
-		}
-
+			sLeft = w * 0.25f; // 背景左边缘坐标
+			sRight = w * 0.75f;// 背景右边缘坐标
+			sTop = 0;
+			sBottom = h;
+			sWidth = sRight - sLeft; // 背景宽度
+			sHeight = sBottom - sTop; // 背景高度
+			x = (float) w / 2;// 圆心的x坐标
+			y = (float) (1 - 0.01 * progress) * sHeight;// 圆心y坐标
 
 		drawBackground(canvas);
 		drawCircle(canvas);
@@ -260,58 +169,31 @@ public class VerticalSeekBar extends View
 
 	private void drawBackground(Canvas canvas)
 	{
-		Log.e("yyyyyyyy>>>>", y + "");
+		Log.e("yyyyyyyy>>>>",y+"");
 		RectF rectBlackBg = new RectF(sLeft, sTop, sRight, y);
-		if (seekbar_orientation == vertical)
-		{
-			// sLeft = w * 0.25f; // 背景左边缘坐标
-			// sRight = w * 0.75f;// 背景右边缘坐标
-			// sTop = 0;
-			// sBottom = h;
-			// sWidth = sRight - sLeft; // 背景宽度
-			// sHeight = sBottom - sTop; // 背景高度
 			linearGradient = new LinearGradient(sLeft, sTop, sWidth, y, colorArray2, null, Shader.TileMode.MIRROR);
-		}
-		else
-		{
-			linearGradient = new LinearGradient(sLeft, sTop, sWidth, sHeight, colorArray, null, Shader.TileMode.MIRROR);
-
-		}
 		paint.setAntiAlias(true);
 		paint.setStyle(Paint.Style.FILL);
 		// 设置渲染器
 		paint.setShader(linearGradient);
-		if (seekbar_orientation == vertical)
-		{
 			canvas.drawRoundRect(rectBlackBg, sWidth / 2, sWidth / 2, paint);
-		}
-		else
-		{
-			canvas.drawRoundRect(rectBlackBg, sHeight / 2, sHeight / 2, paint);
-		}
+
+
+
 
 		RectF rectBlackBg2 = new RectF(sLeft, y, sRight, sBottom);
-		linearGradient = new LinearGradient(sLeft, y, sWidth, sHeight - y, colorArray, null, Shader.TileMode.MIRROR);
+		linearGradient = new LinearGradient(sLeft, y, sWidth, sHeight-y, colorArray, null, Shader.TileMode.MIRROR);
 		paint.setAntiAlias(true);
 		paint.setStyle(Paint.Style.FILL);
 		// 设置渲染器
 		paint.setShader(linearGradient);
-		if (seekbar_orientation == vertical)
-		{
 			canvas.drawRoundRect(rectBlackBg2, sWidth / 2, sWidth / 2, paint);
-		}
-		else
-		{
-			canvas.drawRoundRect(rectBlackBg2, sHeight / 2, sHeight / 2, paint);
-		}
 	}
 
 	private void drawCircle(Canvas canvas)
 	{
 		Paint thumbPaint = new Paint();
 
-		if (seekbar_orientation == vertical)
-		{
 			y = y < mRadius ? mRadius : y;// 判断thumb边界
 			y = y > sHeight - mRadius ? sHeight - mRadius : y;
 			thumbPaint.setAntiAlias(true);
@@ -323,49 +205,18 @@ public class VerticalSeekBar extends View
 			}
 			else
 			{
-
 				BitmapFactory.Options options = new BitmapFactory.Options();
 				options.outWidth = getMeasuredWidth();
 				Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image_background, options);
-				// bitmap.createScaledBitmap(bitmap, getMeasuredWidth(), 2*getMeasuredWidth(),
-				// false);
-				// int outW = bitmap.getWidth();
-				int outH = (int) (bitmap.getHeight() * getMeasuredWidth() / bitmap.getWidth());
-				// canvas.drawBitmap(bitmap, 0, y-outH/2, thumbPaint);
-
-				Rect rect = new Rect(0, (int) (y - outH / 2), getMeasuredWidth(), (int) (y + outH / 2));// 缩小2倍
-				canvas.drawBitmap(bitmap, null, rect, null);
-
+				bitmap.createScaledBitmap(bitmap, getMeasuredWidth(), 2*getMeasuredWidth(), false);
+				int outH = bitmap.getHeight();
+				canvas.drawBitmap(bitmap, 0, y-outH/2, thumbPaint);
 			}
 			// canvas.drawCircle(x, y, mRadius, thumbPaint);
 			// thumbPaint.setStyle(Paint.Style.STROKE);
 			// thumbPaint.setColor(thumbBorderColor);
 			// thumbPaint.setStrokeWidth(2);
 			// canvas.drawCircle(x, y, mRadius, thumbPaint);
-		}
-		else
-		{
-			x = x < mRadius ? mRadius : x;// 判断thumb边界
-			x = x > sWidth - mRadius ? sWidth - mRadius : x;
-			thumbPaint.setAntiAlias(true);
-			thumbPaint.setStyle(Paint.Style.FILL);
-			thumbPaint.setColor(thumbColor);
-
-			if (image_background == 0)
-			{
-				canvas.drawCircle(x, y, mRadius, thumbPaint);
-			}
-			else
-			{
-				Bitmap bitmap = BitmapFactory.decodeResource(getResources(), image_background, null);
-				canvas.drawBitmap(bitmap, 0, 0, thumbPaint);
-			}
-			canvas.drawCircle(x, y, mRadius, thumbPaint);
-			thumbPaint.setStyle(Paint.Style.STROKE);
-			thumbPaint.setColor(thumbBorderColor);
-			thumbPaint.setStrokeWidth(2);
-			canvas.drawCircle(x, y, mRadius, thumbPaint);
-		}
 
 		// if(image_background == 0){
 		//
@@ -382,16 +233,8 @@ public class VerticalSeekBar extends View
 		{
 			return true;
 		}
-		if (seekbar_orientation == vertical)
-		{
 			this.y = event.getY();
 			progress = (sHeight - y) / sHeight * 100;
-		}
-		else
-		{
-			this.x = event.getX();
-			progress = (x) / sWidth * 100;
-		}
 
 		switch (event.getAction())
 		{
