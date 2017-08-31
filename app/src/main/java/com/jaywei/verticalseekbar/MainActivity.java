@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 			case R.id.tv_current_temper:
 				mPureVerticalSeekBar.setVertical_color(Color.GRAY, Color.BLUE);//设置滑竿的颜色，上下两个颜色
 				mPureVerticalSeekBar.setDragable(true);//设置是否可以拖动
+				mPureVerticalSeekBar.setCircle_color(Color.BLUE);//设置圆形滑块颜色
 
 				mPureVerticalSeekBar_circle.setVertical_color(Color.YELLOW, Color.RED);//设置滑竿的颜色，上下两个颜色
 				mPureVerticalSeekBar_circle.setDragable(true);//设置是否可以拖动
