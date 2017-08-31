@@ -1,7 +1,7 @@
 # VerticalSeekbar
 一个好用的竖直方向的seekbar，可以设置颜色，滑块背景，
 
-![](https://github.com/lexluthors/VerticalSeekbar/blob/master/app/testdemo.gif)
+![](https://github.com/lexluthors/VerticalSeekbar/blob/master/app/testdemo2.gif)
 
 
    圆形滑块布局：
