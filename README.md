@@ -31,11 +31,11 @@
 
 用法：
 
-                    mPureVerticalSeekBar.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.TRANSPARENT);//可以设置渐变颜色
-    				mPureVerticalSeekBar.setVertical_color(Color.RED);//可以设置滑竿的颜色，单一颜色
-    				mPureVerticalSeekBar.setDragable(true);//设置是否可以拖动
-    				mPureVerticalSeekBar_circle.setVertical_color(Color.YELLOW, Color.RED);//设置滑竿的颜色，上下两个颜色
-    				mPureVerticalSeekBar.setCircle_color(Color.BLUE);//设置圆形滑块颜色
+    mPureVerticalSeekBar.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.TRANSPARENT);//可以设置渐变颜色
+    mPureVerticalSeekBar.setVertical_color(Color.RED);//可以设置滑竿的颜色，单一颜色
+    mPureVerticalSeekBar.setDragable(true);//设置是否可以拖动
+    mPureVerticalSeekBar_circle.setVertical_color(Color.YELLOW, Color.RED);//设置滑竿的颜色，上下两个颜色
+    mPureVerticalSeekBar.setCircle_color(Color.BLUE);//设置圆形滑块颜色
 
 **注意：
 默认不设置app:image_background属性；默认滑块是圆形，半径最大是控件宽的一半。**
