@@ -5,6 +5,13 @@
 ![](https://github.com/lexluthors/VerticalSeekbar/blob/master/app/testdemo2.gif)
 
 
+
+**用法：**
+
+    compile 'com.jaywei:PureVerticalSeekBar:1.0.0'
+
+
+
    圆形滑块布局：
 
     <news.jaywei.com.pureverticalseekbar.PureVerticalSeekBar
@@ -29,7 +36,7 @@
             app:image_background="@mipmap/thumb2"/>
 
 
-用法：
+方法：
 
     mPureVerticalSeekBar.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.TRANSPARENT);//可以设置渐变颜色
     mPureVerticalSeekBar.setVertical_color(Color.RED);//可以设置滑竿的颜色，单一颜色
