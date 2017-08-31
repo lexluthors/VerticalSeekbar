@@ -8,7 +8,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import news.jaywei.com.pureverticalseekbar.PureVerticalSeekBar;
+import com.jaywei.PureVerticalSeekBar;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, PureVerticalSeekBar.OnSlideChangeListener
 {

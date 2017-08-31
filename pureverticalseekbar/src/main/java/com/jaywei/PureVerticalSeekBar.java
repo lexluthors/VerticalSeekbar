@@ -1,4 +1,4 @@
-package news.jaywei.com.pureverticalseekbar;
+package com.jaywei;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -14,6 +14,8 @@ import android.graphics.Shader;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
+
+import news.jaywei.com.pureverticalseekbar.R;
 
 /**
  * description:

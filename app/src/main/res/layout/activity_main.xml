@@ -22,7 +22,7 @@
         android:text="变色"
         android:textColor="@color/white"/>
 
-    <news.jaywei.com.pureverticalseekbar.PureVerticalSeekBar
+    <com.jaywei.PureVerticalSeekBar
         android:id="@+id/vpb_inner_3"
         android:layout_width="13dp"
         android:layout_height="300dp"
@@ -31,7 +31,7 @@
         app:dragable="true"
         app:image_background="@mipmap/thumb2"/>
 
-    <news.jaywei.com.pureverticalseekbar.PureVerticalSeekBar
+    <com.jaywei.PureVerticalSeekBar
         android:id="@+id/seekbar_circle"
         android:layout_width="13dp"
         android:layout_height="300dp"
