@@ -1,6 +1,5 @@
 package com.jaywei.verticalseekbar;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,12 +8,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, VerticalSeekBar.OnSlideChangeListener
+import news.jaywei.com.pureverticalseekbar.PureVerticalSeekBar;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, PureVerticalSeekBar.OnSlideChangeListener
 {
 	private TextView tvCurrentTemper, tvCurrentBrightness, tvMainTitle;
 	private ImageView ivBack;
-	private VerticalSeekBar vpbInnerTemper;
-	private VerticalSeekBar vpbBrightness;
+	private PureVerticalSeekBar mPureVerticalSeekBar;
+	private PureVerticalSeekBar mPureVerticalSeekBar_circle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -31,29 +32,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 		tvCurrentTemper = (TextView) findViewById(R.id.tv_current_temper);
 		tvCurrentBrightness = (TextView) findViewById(R.id.tv_current_brightness);
-		vpbInnerTemper = (VerticalSeekBar) findViewById(R.id.vpb_inner_temper);
-		vpbBrightness = (VerticalSeekBar) findViewById(R.id.vpb_brightness);
-		// vpbInnerTemper.setColor(Color.RED,Color.BLUE, Color.TRANSPARENT);
-		// vpbBrightness.setColor(Color.BLUE,Color.BLUE, Color.TRANSPARENT);
+		mPureVerticalSeekBar = (PureVerticalSeekBar) findViewById(R.id.vpb_inner_3);
+		mPureVerticalSeekBar_circle = (PureVerticalSeekBar) findViewById(R.id.seekbar_circle);
 		tvCurrentTemper.setOnClickListener(this);
 		tvCurrentBrightness.setOnClickListener(this);
-		// vpbInnerTemper.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE,
-		// Color.TRANSPARENT);
-		// vpbBrightness.setColor(Color.BLUE, Color.WHITE, Color.YELLOW, Color.BLUE,
-		// Color.TRANSPARENT);
 	}
 
 	private void initEvents()
 	{
 		// ivBack.setOnClickListener(this);
-		vpbInnerTemper.setOnSlideChangeListener(this);
-		vpbBrightness.setOnSlideChangeListener(this);
+		mPureVerticalSeekBar.setOnSlideChangeListener(this);
+		mPureVerticalSeekBar_circle.setOnSlideChangeListener(this);
 	}
 
 	private void initData()
 	{
-		vpbInnerTemper.setProgress(50);
-		vpbBrightness.setProgress(70);
 	}
 
 	@Override
@@ -62,14 +55,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		switch (v.getId())
 		{
 			case R.id.tv_current_brightness:
-//				vpbInnerTemper.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.TRANSPARENT);
-//				vpbBrightness.setColor(Color.BLUE, Color.WHITE, Color.YELLOW, Color.BLUE, Color.TRANSPARENT);
-				Intent intent =new Intent(MainActivity.this,Main2Activity.class);
-				startActivity(intent);
+				mPureVerticalSeekBar.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.TRANSPARENT);//设置渐变颜色
+				mPureVerticalSeekBar.setVertical_color(Color.RED);//设置滑竿的颜色，单一颜色
+				mPureVerticalSeekBar.setDragable(true);//设置是否可以拖动
+
+				mPureVerticalSeekBar_circle.setColor(Color.RED, Color.YELLOW, Color.GREEN, Color.BLUE, Color.TRANSPARENT);//设置渐变颜色
+//				mPureVerticalSeekBar_circle.setVertical_color(Color.YELLOW);//设置滑竿的颜色，单一颜色
+				mPureVerticalSeekBar_circle.setDragable(true);//设置是否可以拖动
 				break;
 			case R.id.tv_current_temper:
-				vpbInnerTemper.setColor(Color.RED, Color.BLUE, Color.TRANSPARENT);
-				vpbBrightness.setColor(Color.BLUE, Color.BLUE, Color.TRANSPARENT);
+				mPureVerticalSeekBar.setVertical_color(Color.GRAY, Color.BLUE);//设置滑竿的颜色，上下两个颜色
+				mPureVerticalSeekBar.setDragable(true);//设置是否可以拖动
+
+				mPureVerticalSeekBar_circle.setVertical_color(Color.YELLOW, Color.RED);//设置滑竿的颜色，上下两个颜色
+				mPureVerticalSeekBar_circle.setDragable(true);//设置是否可以拖动
+
 				break;
 		}
 
@@ -78,43 +78,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	@Override
 	public void OnSlideChangeListener(View view, float progress)
 	{
-
+		Log.e("OnSlideChangeListener",""+progress);
+		switch (view.getId()){
+			case R.id.vpb_inner_3:
+				break;
+			case R.id.seekbar_circle:
+				break;
+		}
 	}
 
 	@Override
 	public void onSlideStopTouch(View view, float progress)
 	{
-		int viewId = view.getId();
-		switch (viewId)
-		{
-			case R.id.vpb_inner_temper:
-				if (progress < 0)
-				{
-					progress = 0;
-				}
-				if (progress > 100)
-				{
-					progress = 100;
-				}
-				Log.e("\"progress= \" + progress", "progress= " + progress);
-				// Toast.makeText(MainActivity.this,"progress= " +
-				// progress,Toast.LENGTH_SHORT).show();
+		Log.e("onSlideStopTouch>>>>",""+progress);
+		switch (view.getId()){
+			case R.id.vpb_inner_3:
 				break;
-
-			case R.id.vpb_brightness:
-				if (progress < 0)
-				{
-					progress = 0;
-				}
-				if (progress > 100)
-				{
-					progress = 100;
-				}
-				Log.e("\"progress= \" + progress", "progress1111= " + progress);
-				// Toast.makeText(MainActivity.this,"progress1= " +
-				// progress,Toast.LENGTH_SHORT).show();
+			case R.id.seekbar_circle:
 				break;
 		}
-
 	}
 }

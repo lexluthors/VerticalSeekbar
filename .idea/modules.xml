@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/VerticalSeekbar.iml" filepath="$PROJECT_DIR$/VerticalSeekbar.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pureverticalseekbar/pureverticalseekbar.iml" filepath="$PROJECT_DIR$/pureverticalseekbar/pureverticalseekbar.iml" />
     </modules>
   </component>
 </project>
